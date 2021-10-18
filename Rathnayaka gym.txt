@@ -1,0 +1,564 @@
+
+#include <iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
+
+
+
+struct Item								//create strcuture for items
+{
+	string Name;
+	string Code;
+	float Price;
+}
+Items[12];                            //struct array for item
+
+
+struct Bill							 // structure for bill
+{  
+	string Name;
+	string Code;
+	float Price;
+	int tot;
+	int Qt;
+}; 
+
+
+
+
+void Admin();										// Function definition for admin
+void Cashier(string);								// Function definition for cashier
+void AdminExit();									// Function definition to Exit Program for Admin Menu
+void CashierExit(string);							// Function definition to Exit program for Cashier Menu
+void PrintBill(string);								// Function definition to Select and Print Bill
+void ItemList();									//Function definition to show item list
+void ViewFitnessPackagesDetails();					//Function definition for View fitness package details
+void ViewFoodSupplementDetails();					// Function definition for view Food supplement details
+
+
+int main() {
+	string uname;								//Username
+	string pw;									//Password
+
+	cout << "\n\t\t\t\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "\t\t\t\t|		 Rathnayeka GYM PVT/LTD	GYM		|" << endl;
+	cout << "\t\t\t\t|	No 6, Colombo - Wellawatte, Pamankada		|" << endl;
+	cout << "\t\t\t\t|          TEL # 0112 852600 / 0768636041		|" << endl;
+	cout << "\t\t\t\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "" << endl;
+	cout << "--------------------------------------------------------" << "  LOGIN  " << "-------------------------------------------------------" << endl;
+	cout << "\tEnter Your Username: ";
+	cin >> uname;									
+	cout << "\tEnter Your Password: ";
+	cin >> pw;									
+	cout << "" << endl;
+	if ((uname == "ADMIN12" && pw == "2929")) {										 // Login as Administrator
+		cout << "Successfully Logged In As Administrator!\n" << endl;     
+		cout << "Welcome Administrator" << endl;
+		cout << "-----------------------------------------------------------------ABOUT US -------------------------------------------------------------" << endl;
+		cout << "\t\t\t\t RMD Software was founded in 2018 by Malshan Taves and Mike Hayner," << endl;
+		cout << "\t\t\t\t both excellent software developers. We have provided a wide variety of custom" << endl;
+		cout << "\t\t\t\t development services for such prestigious organizations as Microsoft, the United" << endl;
+		cout << "\t\t\t\t States Postal Service, and Credit Suisse. We are located in the Seattle area but" << endl;
+		cout << "\t\t\t\t provide virtual development teams to many companies, large and small." << endl;
+		cout << "\t\t\t\t The company has an office in Dnipro Ukraine with a team of about 30 software" << endl;
+		cout << "\t\t\t\t developers, led by Alexandr Novikov. They are our employees and we invest in their skills." << endl;
+		cout << "\t\t\t\t ----------------------------WWW.RMDSOFT@gmail.com------------------------------" << endl;
+		system("pause");
+		Admin();
+	}
+	else if (uname == "Ravindu" && pw == "12123") {									//Login as Cashier
+		cout << "Successfully Logged In As Cashier!\n" << endl;             
+		cout << "Welcome To Cashier" << uname + "!" << endl;
+		cout << "-----------------------------------------------------------------ABOUT US -------------------------------------------------------------" << endl;
+		cout << "\t\t\t\t RMD Software was founded in 2018 by Malshan Taves and Mike Hayner," << endl;
+		cout << "\t\t\t\t both excellent software developers. We have provided a wide variety of custom" << endl;
+		cout << "\t\t\t\t development services for such prestigious organizations as Microsoft, the United" << endl;
+		cout << "\t\t\t\t States Postal Service, and Credit Suisse. We are located in the Seattle area but" << endl;
+		cout << "\t\t\t\t provide virtual development teams to many companies, large and small." << endl;
+		cout << "\t\t\t\t The company has an office in Dnipro Ukraine with a team of about 30 software" << endl;
+		cout << "\t\t\t\t developers, led by Alexandr Novikov. They are our employees and we invest in their skills." << endl;
+		cout << "\t\t\t\t ----------------------------WWW.RMDSOFT@gmail.com------------------------------" << endl;
+
+		system("pause");
+		Cashier(uname);
+	}
+
+	else
+
+	{
+
+		system("cls");                                                    
+		cout << "\n\t\t\t\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "\t\t\t\t|		 Rathnayeka GYM PVT/LTD	GYM		|" << endl;
+		cout << "\t\t\t\t|	No 6, Colombo - Wellawatte, Pamankada		|" << endl;
+		cout << "\t\t\t\t|          TEL # 0112 852600 / 0768636041		|" << endl;
+		cout << "\t\t\t\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "" << endl;
+		cout << "--------------------------------------------------------" << "  LOGIN  " << "-------------------------------------------------------" << endl;
+		cout << "\t\t USER NAME OR PASSWORD IS INCORRECT!! " << endl << " Try Again " << endl;                       	
+		cout << "" << endl;
+		cout << "Program will be terminated" << endl;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+void Admin() {                                        //Option Number for choosing administartor
+	int op;
+	system("cls");              
+
+	cout << "\n\t\t\t\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "\t\t\t\t|		 Rathnayeka GYM PVT/LTD	GYM		|" << endl;
+	cout << "\t\t\t\t|	No 6, Colombo - Wellawatte, Pamankada		|" << endl;
+	cout << "\t\t\t\t|          TEL # 0112 852600 / 0768636041		|" << endl;
+	cout << "\t\t\t\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "" << endl;
+	cout << "-----------------------------------------------" << "  ADMINISTRATOR MENU  " << "--------------------------------------------------" << endl;
+	cout << "" << endl;
+
+
+
+	cout << "\t\t1. View fitness Package Details" << endl;				//View fitness package details
+	cout << "\t\t2. View Food Supplement Details" << endl;				//View food supplemnt details
+	cout << "\t\t3. Exit" << endl;										//Exit from the program
+	cout << "" << endl;
+
+	cout << "\t\tSelect- ";
+	cin >> op;                                                   //selecting an option from main menu
+	cout << "" << endl;
+	switch (op) {
+
+
+
+	case 1:
+		system("cls");
+		ViewFitnessPackagesDetails();
+		system("pause");
+		system("cls");
+		Admin();
+		break;
+
+	case 2:
+		ViewFoodSupplementDetails();
+		system("pause");
+		system("cls");
+		Admin();
+		break;
+
+
+	case 3:
+		system("cls");													
+		AdminExit();
+
+
+	default:
+		cout << "Select Between 1-3" << endl;					
+		system("pause");
+		Admin();		                                             
+		break;
+	}
+
+};
+
+
+
+
+
+
+
+
+
+
+
+void Cashier(string uname) {                                             //Option number for choosing cashier
+	int op;
+	system("cls");
+
+
+	cout << "\n\t\t\t\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "\t\t\t\t|		 Rathnayeka GYM PVT/LTD	GYM		|" << endl;
+	cout << "\t\t\t\t|	No 6, Colombo - Wellawatte, Pamankada		|" << endl;
+	cout << "\t\t\t\t|          TEL # 0112 852600 / 0768636041		|" << endl;
+	cout << "\t\t\t\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "" << endl;
+	cout << "-------------------------------------------------" << "  CASHIER MENU  " << "----------------------------------------------------" << endl;
+	cout << "" << endl;
+
+	cout << "\t\t\t\t1. View Fitness Package Details" << endl;				//View fitness package details
+	cout << "\t\t\t\t2. View Food Supplement Details" << endl;				//View food supplement details
+	cout << "\t\t\t\t3. Calculate Bill" << endl;							//Calculate Bill
+	cout << "\t\t\t\t4. Exit" << endl;										//Exit from the program
+	cout << "" << endl;
+
+	cout << "\tSelect- ";									 //selecting an option from cashier menu
+	cin >> op;													//Reading entered option
+	cout << "" << endl;
+	switch (op) {
+
+
+	case 1:
+		ViewFitnessPackagesDetails();											
+		system("pause");
+		system("cls");										
+		Cashier(uname);								
+		break;
+
+	case 2:
+		system("cls");
+		ViewFoodSupplementDetails();													
+		system("pause");
+		system("cls");													
+		Cashier(uname);
+		break;
+
+	case 3:
+		PrintBill(uname);										
+		Cashier(uname);								
+		break;
+
+	case 4:
+		system("cls");								
+		CashierExit(uname);                                  
+		break;
+
+	default:
+		cout << "Select Between 1-4" << endl;						
+		system("pause");
+		Cashier(uname);								
+		break;
+	}
+}
+
+
+
+
+
+
+
+
+
+void AdminExit()					//Exit Function for Admin
+{
+	string op; // variable for selection
+	cout << "\n\t\t\t\t ________________________________________________" << endl;
+	cout << "\t\t\t\t|        Rathnayeka GYM PVT/LTD	GYM           	|" << endl;
+	cout << "\t\t\t\t|    No 6, Colombo - Wellawatte, Pamankada,	    |" << endl;
+	cout << "\t\t\t\t|          TEL # 0112 852600 / 0768636041		    |" << endl;
+	cout << "\t\t\t\t|__________________________________________________|" << endl;
+	cout << "" << endl;
+	cout << "________________________________________________" << "  EXIT MENU  " << "__________________________________________________" << endl;
+	cout << "" << endl;
+	cout << "\n\t\t\t\t ________________________________________________" << endl;
+	cout << "\t\t\t\t|        CONFIRM, DO YOU WANT TO EXIT          	|" << endl;
+	cout << "\t\t\t\t|                   [YES  /  NO]	                |" << endl;
+	cout << "\t\t\t\t|          []ENTER Y FOR YES OR N FOR NO	        |" << endl;
+	cout << "\t\t\t\t|__________________________________________________|" << endl;
+	cin >> op;
+
+	if (op == "y" || op == "Y")  // if selection y program will  exit completely
+	{
+		exit(0);}
+else if (op == "n" || op == "N") // if selection n program will go to admin menu.
+	{
+		system("cls"); 
+		Admin();}
+	else
+	{
+		cout << "\n\t\t\t\t\t   --------   ENTER Y OR N  ONLY   --------   \n" << endl; // prints error message.
+		AdminExit();}
+}
+
+
+
+
+
+
+
+
+void CashierExit(string username)						// Exit Function for Cashier
+{
+	string op; // variable to get user input.
+	cout << "\n\t\t\t\t _____________________________________________" << endl;
+	cout << "\t\t\t\t|       Rathnayeka GYM PVT/LTD	GYM          	|" << endl;
+	cout << "\t\t\t\t|   No 6, Colombo - Wellawatte, Pamankada,  	|" << endl;
+	cout << "\t\t\t\t|          TEL # 0112 852600 / 0768636041		|" << endl;
+	cout << "\t\t\t\t|______________________________________________|" << endl;
+	cout << "" << endl;
+	cout << "_________________________________________" << "  EXIT MENU  " << "____________________________________________" << endl;
+	cout << "" << endl;
+	cout << "\n\t\t\t\t ________________________________________________" << endl;
+	cout << "\t\t\t\t|        CONFIRM, DO YOU WANT TO EXIT          	|" << endl;
+	cout << "\t\t\t\t|                   [YES  /  NO]	                |" << endl;
+	cout << "\t\t\t\t|          []ENTER Y FOR YES OR N FOR NO	        |" << endl;
+	cout << "\t\t\t\t|__________________________________________________|" << endl;
+	cin >> op;
+
+	if (op == "y" || op == "Y")                   // if selection = y program will  exit completely
+	{	exit(0);                  // exit completely.
+	}
+	else if (op == "n" || op == "N")              // if selection = n program will go to cashier menu.
+	{
+		system("cls");              
+		Cashier(username);                   //call cashier menu function 
+	}
+	else
+	{
+		cout << "\n\t\t\t\t\t   --------   ENTER Y OR N  ONLY   --------   \n" << endl; // prints error message.
+		CashierExit(username);}
+}
+
+
+
+
+
+
+
+
+void ItemList() {   // item list in the application
+
+	Items[0].Code = "PKGDT001";
+	Items[0].Name = "DAY WORKOUT - PACK";
+	Items[0].Price = 1500.00;
+
+	Items[1].Code = "PKGDT002";
+	Items[1].Name = " EXECUTIVE MEM(FULL) - PACK";
+	Items[1].Price = 5500.00;
+
+	Items[2].Code = "PKGDT003";
+	Items[2].Name = " 1 MONTH MEMBERSHIP  - PACK";
+	Items[2].Price = 3000.00;
+
+	Items[3].Code = "PKGDT004";
+	Items[3].Name = " MASTERS MEMBERSHIP OVER 60 Yrs  - PACK";
+	Items[3].Price = 5000.00;
+
+	Items[4].Code = "PKGDT005";
+	Items[4].Name = " NON-PEAK EXECUTIVE  - PACK";
+	Items[4].Price = 3300.00;
+
+	Items[5].Code = "ITMP001";
+	Items[5].Name = "SUPPL - PLATINUM 100% CREATINE";
+	Items[5].Price = 4000.00;
+
+	Items[6].Code = "ITMB002";
+	Items[6].Name = "SUPPL - BEST AMINOLYTES";
+	Items[6].Price = 6000.00;
+
+	Items[7].Code = "ITMB003";
+	Items[7].Name = "SUPPL - BEAST SUPER SAUNA";
+	Items[7].Price = 6000.00;
+
+	Items[8].Code = "ITMF004";
+	Items[8].Name = "SUPPL - ON FISH OIL (100 SOFT-GELS)";
+	Items[8].Price = 3500.00;
+
+	Items[9].Code = "ITMC005";
+	Items[9].Name = "SUPPL - CREATINE 5000 (60 SERVINGS)";
+	Items[9].Price = 3000.00;
+
+	Items[10].Code = "ITMS006";
+	Items[10].Name = "SUPPL- D-STUNNER ALPHA 30 SERVINGS";
+	Items[10].Price = 6500.00;
+
+	Items[11].Code = "ITMG007";
+	Items[11].Name = "SUPPL - GOLD STANDARD GAINER 10 LBS";
+	Items[11].Price = 20000.00;
+
+}
+
+void ViewFitnessPackagesDetails() {
+	system("cls");
+	cout << "_______________" << "  FITNESS PACKAGES DETAILS  " << "_________________" << endl;
+	cout << "" << endl;
+	cout << "" << endl;
+	cout << "PACKAGE ID		PACKAHE NAME					MEMBERSHIP RATE		INTRODUCTORY RATE" << endl;
+	cout << "" << endl;
+	cout << "PKGDT001		DAY WORKOUT					RS 1500.00		RS 1500.00" << endl;
+	cout << "PKGDT002		EXECUTIVE MEM(FULL)				RS 5500.00		RS 5500.00" << endl;
+	cout << "PKGDT003		1 MONTH MEMBERSHIP				RS 3000.00		RS 3000.00" << endl;
+	cout << "PKGDT004		MASTERS MEMBERSHIP OVER 60 YRS			RS 5000.00		RS 5000.00" << endl;
+	cout << "PKGDT005		NON-PEAK EXECUTIVE				RS 3300.00		RS 3300.00" << endl;
+	cout << "" << endl;
+}
+
+void ViewFoodSupplementDetails() {
+	system("cls");
+	cout << "_______________" << "  FOOD SUPPLEMENT DETAILS  " << "________________" << endl;
+	cout << "" << endl;
+	cout << "" << endl;
+	cout << "ITEM CODE	ITEM NAME			PRICE" << endl;
+	cout << "" << endl;
+	cout << "ITMP001		PLATINUM 100% CREATINE		RS 4000.00" << endl;
+	cout << "ITMB002		BEAST AMINOLYTES		RS 6000.00" << endl;
+	cout << "ITMB003		BEAST SUPER SAUNA		RS 6000.00" << endl;
+	cout << "ITMF004		ON FISH OIL (100 SOFT-GELS)	RS 3500.00" << endl;
+	cout << "ITMC005		CREATINE 5000 (60 SERVINGS)	RS 3000.00" << endl;
+	cout << "ITMS006		D-STUNNER ALPHA 30 SERVINGS	RS 6500.00" << endl;
+	cout << "ITMG007		GOLD STANDARD GAINER 10 LBS	RS 20000.00" << endl;
+	cout << "" << endl;
+}
+
+
+
+
+
+
+
+void PrintBill(string uname) {                           //Function for add items
+	system("cls");
+	Bill Arr[1500];						//Array to store selected Items
+	int C2 = 0, it, tot, amt, qt, stot = 0, bal = 0, disc, todisc, IVN;   // varialbe declaration for print bill
+	string Cname, Date;
+	string select, itcode;
+	ItemList();
+	cout << "-------------------------------------------------" << "  BILL ITEMS  " << "----------------------------------------------------" << endl;
+
+	do {
+		cout << "Please Insert Item quantity - ";//billing items quantity
+		cin >> it;
+
+		if (it > 12) {
+			cout << "\t\t\t-----------Please enter less than 1500-----------\n" << endl;       //Error message for exceeding the maximum bill items
+		}
+	} while (it > 12);
+	cout << "" << endl;
+	while (C2 < it) {
+		cout << "Enter Item Code:";
+		cin >> itcode;
+		cout << "" << endl;
+		for (int c = 0; c < 12; c++) {
+			if (itcode == Items[c].Code) {
+				cout << "Item Name : " << Items[c].Name << endl;
+				cout << "Item Price :" << Items[c].Price << endl;
+				Arr[c].Code = Items[c].Code;								//save selected item code 
+				Arr[c].Name = Items[c].Name;						//save selected item name
+				Arr[c].Price = Items[c].Price;							//save selected item price
+				cout << "" << endl;
+				cout << "Enter quantity You want to relevant item - ";						//geting quantity of the item
+				cin >> qt;
+				cout << "--------------------------" << endl;
+				tot = qt*Items[c].Price;						//total sum=quantity of selected item × price of the item
+				stot = stot + tot;							//every bought item subtotal= Total of  every "total Sum"
+				Arr[c].Qt = qt;									//save quantity of the selected item
+				Arr[c].tot = tot;								//save of sum of the selected item
+
+			}
+		}
+		C2++;                                        //increase counter variable from 1 value
+	}
+
+	cout << "Your Payment is - Rs " << stot << endl;						//Display Subtotal
+	cout << "Customer Paid Amount is - ";
+	cin >> amt;												//Enter the customer given amount
+	cout << "Please Insert a Customer Name:" << endl;
+	cin >> Cname;
+	cout << "Please Insert Invoice No" << endl;				//Enter the invoice number
+	cin >> IVN;
+	cout << "Please Insert a Date" << endl;					//Enter the date
+	cin >> Date;
+	system("pause");
+
+
+
+
+	//Displaying the bill
+	system("cls");
+	cout << "\n\t\t\t\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "\t\t\t\t|		 Rathnayeka GYM PVT/LTD	GYM		|" << endl;
+	cout << "\t\t\t\t|	No 6, Colombo - Wellawatte, Pamankada		|" << endl;
+	cout << "\t\t\t\t|          TEL # 0112 852600 / 0768636041		|" << endl;
+	cout << "\t\t\t\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "" << endl;
+	cout << "Cashier -        " << uname << endl;
+	cout << "CUSTOMER NAME:  " << Cname << endl;
+	cout << "INVOIC NO:          " << IVN << endl;
+	cout << "DATE:         " << Date << endl;
+
+	cout << "" << endl;
+	cout << "______________________________________________________________________________________________________________________________________________" << endl;
+	for (int c = 0; c < 12; c++) {       // For loop for get the selected item into the bill
+		if (Arr[c].Qt >= 1) {
+			cout << Arr[c].Name << endl;
+			cout << setw(15) << Arr[c].Code << setw(18) << "(" << Arr[c].Price << "x" << Arr[c].Qt << ")" << setw(40) << "Rs " << Arr[c].tot << endl; //getting selected items
+		}
+	}
+	cout << "---------------------------------------------------------------------------------" << endl;
+	cout << "---------------------------------------------------------------------------------" << endl;
+	cout << "Total " << setw(68) << "Rs " << stot << endl;
+	cout << "Paid Amount " << setw(68) << "Rs " << amt << endl;
+	if (stot >= 5000) {
+		disc = stot*0.5;
+		todisc = disc/100;
+	}
+	cout << "Discount IS" << setw(55) << "Rs " << todisc << endl;
+	stot = stot - todisc;
+	cout << "SUB TOTAL" << setw(35) << "Rs " << stot << endl;
+	cout << "---------------------------------------------------------------------------------" << endl;
+	bal = amt - stot;
+	cout << "Balance" << setw(35) << "Rs " << bal << endl;
+
+	cout << "\t\t\t--------------------THANK YOU COME AGAIN Have a Good Day--------------------" << endl;
+	cout << "" << endl;
+	cout << "\t\t\t\t      Please note that food items and Packages " << endl;
+	cout << "\t\t\t\t      will not be accepted as return or change." << endl;;
+	cout << "" << endl;
+	cout << "" << endl;
+	cout << " _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" << endl;
+	cout << " _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" << endl;
+	cout << "" << endl;
+	cout << "Saved sale details successfully" << endl;
+	system("pause");
+
+
+
+
+
+	//select to print a new bill or cancel
+	cout << "Do you want to print another bill? (y/n): ";  //asking cashier to selct a new bill or not
+	cin >> select;
+	if (select == "y") {
+		system("cls");
+		PrintBill(uname);									//function calling for print bill again
+	}
+	else if (select == "n") {
+		system("cls");
+		Cashier(uname);							//function calling for cashier menu 
+	}
+	else {
+		cout << "\n\t\t\t\t\t   --------   Enter y or n  only   --------   \n" << endl; // prints error message.
+	}
+	while (select != "y" || select != "n");
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
